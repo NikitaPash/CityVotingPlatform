@@ -129,4 +129,4 @@ Week 12 (05/15 - 05/22):
 Anti-Lab 2
 - Vitaliy Zhuravskyi
 - https://github.com/TwoUfo/crowdcausify
-- https://github.com/TwoUfo/Pashchuk.University.CityVotingPlatform/edit/main/README.md
+- https://github.com/TwoUfo/Pashchuk.University.CityVotingPlatform
