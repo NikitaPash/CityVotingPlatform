@@ -126,4 +126,7 @@ Week 12 (05/15 - 05/22):
 4. Implement support ticket system ✔️
 5. Test help and support features for accessibility and usability ✔️
 
-
+Anti-Lab 2
+- Vitaliy Zhuravskyi
+- https://github.com/TwoUfo/crowdcausify
+- https://github.com/TwoUfo/Pashchuk.University.CityVotingPlatform/edit/main/README.md
