@@ -127,8 +127,6 @@ Week 12 (05/15 - 05/22):
 5. Test help and support features for accessibility and usability ✔️
 
 ## Anti-Lab 2
-- Nikita Pashchuk
-- [My project](https://github.com/NikitaPash/Pashchuk.University.CityVotingPlatform)
-- [My fork for Victoria Kondratska](https://github.com/NikitaPash/Kondratska.University.AirplaneLearning)
-- [My fork for Vitaliy Zhuravskyi](https://github.com/NikitaPash/webproject)
-
+- Kondratska
+- [My project](https://github.com/gearbeagel/Kondratska.University.AirplaneLearning)
+- [My fork](https://github.com/gearbeagel/Pashchuk.University.CityVotingPlatform)
