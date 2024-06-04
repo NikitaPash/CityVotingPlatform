@@ -6,6 +6,14 @@ from django.contrib import staticfiles
 from dotenv import load_dotenv
 import os
 
+from opentelemetry.instrumentation.django import DjangoInstrumentor
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
+from opentelemetry import trace
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,7 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware'
+    'allauth.account.middleware.AccountMiddleware',
+    'CityVotingPlatform.middleware.TracingMiddleware',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -201,3 +210,13 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'vebvebenko@gmail.com'
 EMAIL_HOST_PASSWORD = passwrd
 EMAIL_USE_TLS = True
+
+# Application Insights
+exporter = AzureMonitorTraceExporter(connection_string=os.getenv('app_insights_conn_str'))
+
+tracer_provider = TracerProvider(resource=Resource.create({}),)
+tracer_provider.add_span_processor(BatchSpanProcessor(exporter))
+
+DjangoInstrumentor().instrument()
+LoggingInstrumentor().instrument()
+trace.set_tracer_provider(tracer_provider)
