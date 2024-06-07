@@ -13,5 +13,6 @@ urlpatterns = [
     path('', include('help_and_support.urls')),
     path('projects/', include('voting.urls')),
     path('proposal/', include('user_submissions.urls')),
+    path('swagger/', include('swagger.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

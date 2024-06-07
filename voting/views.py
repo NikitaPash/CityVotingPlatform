@@ -86,8 +86,8 @@ def add_comment(request, project_id):
                 user_notifs = Notifications.objects.filter(user=request.user).first()
                 if user_notifs.comment_notifications is True:
                     subject = 'Thanks for commenting!'
-                    message = f'Dear {request.user.username}. Thank you for leaving a comment under project {project.name}. We appreciate your opinion.'
-                    user_email = project.user.email
+                    message = f'Dear {request.user.username}. Thank you for leaving a comment under project "{project.name}". We appreciate your opinion.'
+                    user_email = request.user.email
                     send_email(request, subject, message, user_email)
                 messages.success(request, 'Thanks for commenting!')
                 return redirect('detail', project_id=project_id)
