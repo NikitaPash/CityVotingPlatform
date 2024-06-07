@@ -1,0 +1,27 @@
+{% extends 'homepage/homepage.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" href="{% static 'css/about_style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Rethink+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="about-container">
+        <h1>About the Project</h1>
+        <div class="about-content">
+            <p><strong>Author:</strong> Nikita Pashchuk</p>
+            <p><strong>Project Number:</strong> 46</p>
+            <p><strong>Project Name:</strong> City Voting Platform</p>
+            <p><strong>Email:</strong> <a href="mailto:pashchuknik@gmail.com">pashchuknik@gmail.com</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/NikitaPash/Pashchuk.University.CityVotingPlatform" target="_blank">City Voting Platform on GitHub</a></p>
+            <p><strong>Telegram:</strong> <a href="https://t.me/TakTakYa" target="_blank">@TakTakYa</a></p>
+        </div>
+    </main>
+</body>
+</html>
+{% endblock %}

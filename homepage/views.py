@@ -124,3 +124,8 @@ def update_notification_settings(request):
             return redirect('profile')
     else:
         return redirect('profile')
+
+
+@login_required
+def about(request):
+    return render(request, 'homepage/about.html')
