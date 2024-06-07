@@ -51,6 +51,9 @@ def detail(request, project_id):
 def vote(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     user = request.user
+    if project.user == request.user:
+        messages.error(request, "You can't vote for yourself")
+        return redirect('detail', project_id=project_id)
     user_voted = UserChoice.objects.filter(user=user, project=project)
     if user_voted.exists():
         return redirect('detail', project_id=project_id)
@@ -77,7 +80,7 @@ def vote(request, project_id):
 def add_comment(request, project_id):
     if request.method == 'POST':
         project = Project.objects.get(pk=project_id)
-        comment_text = request.POST.get('comment_text')
+        comment_text = request.POST.get('comment_text', '').strip()
         user_voted = UserChoice.objects.filter(user=request.user, project=project)
         if user_voted:
             if comment_text and user_voted:

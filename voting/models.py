@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
+import pytz
 
 
 # Project class
@@ -19,6 +20,11 @@ class Project(models.Model):
     description = models.TextField()
     district = models.CharField(max_length=50, choices=DISTRICT_CHOICES, default='Galician District')
     pub_date = models.DateTimeField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+        ukrainian_tz = pytz.timezone('Europe/Kiev')
+        self.pub_date = timezone.now().astimezone(ukrainian_tz)
+        super(Project, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

@@ -30,6 +30,9 @@ def report_project(request, project_id):
     if report:
         messages.error(request, 'You have already reported this project')
         return redirect('home')
+    if project.user == request.user:
+        messages.error(request, "You can't report yourself")
+        return redirect('home')
     report = ReportOnProject.objects.create(project=project, reported_by=request.user)
     report.save()
     subject = f'Fate of {project.name} project'
@@ -47,6 +50,9 @@ def report_comment(request, comment_id):
     report = ReportOnComment.objects.filter(comment=comment, reported_by=request.user)
     if report:
         messages.error(request, 'You have already reported this comment')
+        return redirect('home')
+    if comment.user == request.user:
+        messages.error(request, "You can't report yourself")
         return redirect('home')
     report = ReportOnComment.objects.create(comment=comment, reported_by=request.user)
     report.save()

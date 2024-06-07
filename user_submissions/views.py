@@ -27,6 +27,7 @@ def submit_proposal(request):
                 message = f'Dear {user.username}. Thank you for proposing your idea! We appreciate your impact.'
                 send_email(request, subject, message)
             submission.save()
+            messages.success(request, 'Proposal was submitted.')
             return redirect('home')
     else:
         form = UserSubmissionForm()

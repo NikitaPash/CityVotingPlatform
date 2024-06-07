@@ -17,8 +17,13 @@
             {% if not user.is_authenticated %}
             <h2 class="project-disclaimer">Login to access more content</h2>
             {% endif %}
+            <form method="GET" action="{% url 'home' %}" class="search-form">
+                <input type="text" name="q" placeholder="Search projects..." value="{{ query }}">
+                <button type="submit">Search</button>
+            </form>
         </header>
         {% if projects %}
+            {% load tz %}
             {% for project in projects %}
                 <div class="project-content">
                     <div class="project-card">
@@ -29,7 +34,9 @@
                     {% endif %}
                         <div class="project-metadata">
                             <p class="project-id">№ {{ project.id }}</p>
-                            <p class="project-upload-date">{{ project.district }} • {{ project.pub_date }}</p>
+                            <p class="project-upload-date">
+                                {{ project.district }} • {% timezone "Europe/Kiev" %}{{ project.pub_date }}{% endtimezone %}
+                            </p>
                         </div>
                         <div class="project-card-text-container">
                             <p class="project-card-text">{{ project.description }}</p>
@@ -40,8 +47,25 @@
                     </div>
                 </div>
             {% endfor %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if projects.has_previous %}
+                        <a href="?page=1&q={{ query }}">&laquo; First</a>
+                        <a href="?page={{ projects.previous_page_number }}&q={{ query }}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ projects.number }} of {{ projects.paginator.num_pages }}
+                    </span>
+
+                    {% if projects.has_next %}
+                        <a href="?page={{ projects.next_page_number }}&q={{ query }}">Next</a>
+                        <a href="?page={{ projects.paginator.num_pages }}&q={{ query }}">Last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
         {% else %}
-            <div class="no-projects">No projects available :(</div>
+            <div class="no-projects">No projects found :(</div>
         {% endif %}
     </div>
     <script src="{% static 'js/project_redirect.js' %}"></script>

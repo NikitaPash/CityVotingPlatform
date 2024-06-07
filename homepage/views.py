@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 import os
 
 from .models import ImageStorage, Notifications
@@ -11,7 +13,23 @@ from voting.models import Project
 
 
 def home(request):
-    projects = Project.objects.order_by('-pub_date')[:5]
+    query = request.GET.get('q')
+    project_list = Project.objects.all()
+
+    if query:
+        project_list = project_list.filter(Q(name__icontains=query))
+
+    project_list = project_list.order_by('-pub_date')
+    paginator = Paginator(project_list, 5)
+
+    page = request.GET.get('page')
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+
     context = {'projects': projects}
     for message in messages.get_messages(request):
         if message.level == messages.ERROR:

@@ -124,6 +124,59 @@
     font-size: 20px;
 }
 
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination .step-links {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination .step-links a,
+.pagination .step-links .current {
+    color: #1a2039;
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #1a2039;
+}
+
+.pagination .step-links a:hover {
+    background-color: #1a2039;
+    color: white;
+}
+
+.search-form {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #1a2039;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-form button:hover {
+    background-color: #4a4e69;
+}
+
 @media screen and (max-width: 768px) {
     .project-card {
         width: 100%;

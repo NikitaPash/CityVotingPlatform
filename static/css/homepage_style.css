@@ -17,6 +17,12 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
+.header a.active {
+    background-color: #d9d8da;
+    color: black;
+    font-weight: bold;
+}
+
 .header a:not(:last-child) {
   border-right: 1px solid #57606f;
 }

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'help_and_support',
     'swagger',
     'drf_yasg',
+    'pytz',
 ]
 
 MIDDLEWARE = [
