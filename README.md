@@ -125,8 +125,3 @@ Week 12 (05/15 - 05/22):
 3. Design UI for accessing help resources ✔️
 4. Implement support ticket system ✔️
 5. Test help and support features for accessibility and usability ✔️
-
-## Anti-Lab 2
-- Kondratska
-- [My project](https://github.com/gearbeagel/Kondratska.University.AirplaneLearning)
-- [My fork](https://github.com/gearbeagel/Pashchuk.University.CityVotingPlatform)
